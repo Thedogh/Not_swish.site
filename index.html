@@ -6,27 +6,34 @@
 <title>Is not_swish a good person?</title>
 
 <style>
+
 body {
     font-family: Arial, sans-serif;
-    text-align: center;
-    padding: 50px;
     background-color: #f0f0f0;
     margin: 0;
-    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#container {
+    text-align: center;
 }
 
 #question {
-    font-size: 24px;
-    margin-bottom: 20px;
+    font-size: 60px;
+    margin-bottom: 40px;
+    font-weight: bold;
 }
 
 .option-btn {
-    padding: 10px 20px;
-    margin: 10px;
-    font-size: 18px;
+    padding: 15px 35px;
+    margin: 15px;
+    font-size: 26px;
     cursor: pointer;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     background-color: #4CAF50;
     color: white;
 }
@@ -36,9 +43,8 @@ body {
 }
 
 #response-area {
-    margin-top: 30px;
-    font-size: 40px;
-    min-height: 100px;
+    margin-top: 40px;
+    font-size: 200px;
 }
 
 #video-placeholder {
@@ -51,10 +57,13 @@ body {
     object-fit: cover;
     z-index: 9999;
 }
+
 </style>
 </head>
 
 <body>
+
+<div id="container">
 
 <div id="question">Is not_swish a good person?</div>
 
@@ -62,6 +71,8 @@ body {
 <button class="option-btn" onclick="selectOption('no')">No</button>
 
 <div id="response-area"></div>
+
+</div>
 
 <video id="video-placeholder" autoplay muted loop playsinline>
     <source src="video.mp4" type="video/mp4">
@@ -86,7 +97,6 @@ function selectOption(choice) {
     } else {
 
         responseArea.innerHTML = "";
-
         video.style.display = "block";
 
         video.play().catch(err => {
