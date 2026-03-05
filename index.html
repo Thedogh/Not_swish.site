@@ -6,55 +6,64 @@
 <title>Is not_swish a good person?</title>
 
 <style>
-body {
+
+body{
     font-family: Arial, sans-serif;
-    text-align: center;
-    padding: 50px;
-    background-color: #f0f0f0;
-    margin: 0;
-    overflow: hidden;
+    background:#f0f0f0;
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
-#question {
-    font-size: 24px;
-    margin-bottom: 20px;
+#container{
+    text-align:center;
 }
 
-.option-btn {
-    padding: 10px 20px;
-    margin: 10px;
-    font-size: 18px;
-    cursor: pointer;
-    border: none;
-    border-radius: 5px;
-    background-color: #4CAF50;
-    color: white;
+#question{
+    font-size:80px;
+    font-weight:bold;
+    margin-bottom:50px;
 }
 
-.option-btn:hover {
-    background-color: #45a049;
+.option-btn{
+    padding:20px 50px;
+    margin:18px;
+    font-size:32px;
+    border:none;
+    border-radius:10px;
+    background:#4CAF50;
+    color:white;
+    cursor:pointer;
 }
 
-#response-area {
-    margin-top: 30px;
-    font-size: 40px;
-    min-height: 100px;
+.option-btn:hover{
+    background:#45a049;
 }
 
-#video-placeholder {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    object-fit: cover;
-    z-index: 9999;
+#response-area{
+    margin-top:50px;
+    font-size:220px;
 }
+
+#video-placeholder{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100vh;
+    object-fit:cover;
+    z-index:9999;
+}
+
 </style>
 </head>
 
 <body>
+
+<div id="container">
 
 <div id="question">Is not_swish a good person?</div>
 
@@ -63,38 +72,40 @@ body {
 
 <div id="response-area"></div>
 
-<video id="video-placeholder" autoplay muted loop playsinline>
-    <source src="video.mp4" type="video/mp4">
+</div>
+
+<video id="video-placeholder" muted loop playsinline>
+    <source src="yourvideo/video.mp4" type="video/mp4">
 </video>
 
 <script>
 
-function selectOption(choice) {
+const video = document.getElementById("video-placeholder");
+
+window.addEventListener("load", () => {
+    video.load();
+});
+
+function selectOption(choice){
 
     const responseArea = document.getElementById("response-area");
-    const video = document.getElementById("video-placeholder");
     const question = document.getElementById("question");
     const buttons = document.querySelectorAll(".option-btn");
 
-    buttons.forEach(btn => btn.style.display = "none");
-    question.style.display = "none";
+    buttons.forEach(btn => btn.style.display="none");
+    question.style.display="none";
 
-    if (choice === "yes") {
-
-        responseArea.innerHTML = "✔️";
-
-    } else {
-
-        responseArea.innerHTML = "";
-
-        video.style.display = "block";
-
-        video.play().catch(err => {
-            console.log("Video failed:", err);
-        });
-
+    if(choice === "yes"){
+        responseArea.innerHTML="✔️";
     }
+    else{
+        responseArea.innerHTML="";
+        video.style.display="block";
 
+        video.play().catch(err=>{
+            console.log("Playback error:", err);
+        });
+    }
 }
 
 </script>
