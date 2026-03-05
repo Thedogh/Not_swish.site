@@ -1,114 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Is not_swish a good person?</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Background</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #000;
+        }
 
-<style>
+        /* Make the video fill the screen */
+        #video-placeholder {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-body{
-    font-family: Arial, sans-serif;
-    background:#f0f0f0;
-    margin:0;
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
-
-#container{
-    text-align:center;
-}
-
-#question{
-    font-size:80px;
-    font-weight:bold;
-    margin-bottom:50px;
-}
-
-.option-btn{
-    padding:20px 50px;
-    margin:18px;
-    font-size:32px;
-    border:none;
-    border-radius:10px;
-    background:#4CAF50;
-    color:white;
-    cursor:pointer;
-}
-
-.option-btn:hover{
-    background:#45a049;
-}
-
-#response-area{
-    margin-top:50px;
-    font-size:220px;
-}
-
-#video-placeholder{
-    display:none;
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100vh;
-    object-fit:cover;
-    z-index:9999;
-}
-
-</style>
+        /* Overlay text styling */
+        .content-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 8px;
+        }
+    </style>
 </head>
-
 <body>
 
-<div id="container">
+    <video id="video-placeholder" muted loop playsinline>
+        <source src="yourvideo.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
 
-<div id="question">Is not_swish a good person?</div>
-
-<button class="option-btn" onclick="selectOption('yes')">Yes</button>
-<button class="option-btn" onclick="selectOption('no')">No</button>
-
-<div id="response-area"></div>
-
-</div>
-
-<video id="video-placeholder" muted loop playsinline>
-    <source src="yourvideo.mp4" type="video/mp4">
-</video>
-
-<script>
-
-const video = document.getElementById("video-placeholder");
-
-window.addEventListener("load", () => {
-    video.load();
-});
-
-function selectOption(choice){
-
-    const responseArea = document.getElementById("response-area");
-    const question = document.getElementById("question");
-    const buttons = document.querySelectorAll(".option-btn");
-
-    buttons.forEach(btn => btn.style.display="none");
-    question.style.display="none";
-
-    if(choice === "yes"){
-        responseArea.innerHTML="✔️";
-    }
-    else{
-        responseArea.innerHTML="";
-        video.style.display="block";
-
-        video.play().catch(err=>{
-            console.log("Playback error:", err);
-        });
-    }
-}
-
-</script>
+    <div class="content-overlay">
+        <h1>Video Demo</h1>
+        <p>Ensure 'yourvideo.mp4' is in the same directory as this HTML file.</p>
+    </div>
 
 </body>
 </html>
