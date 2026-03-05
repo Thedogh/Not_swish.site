@@ -54,9 +54,7 @@
     
     <div id="response-area"></div>
     <video id="video-placeholder" autoplay loop muted playsinline>
-        <!-- To add an MP4 file, set the src attribute here, e.g., src="yourvideo.mp4" -->
-        <!-- Autoplay works after user interaction (button click) -->
-        <source src="videos/yourvideo.mp4.mp4" type="video/mp4">
+        <source src="yourvideo.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 
@@ -99,11 +97,8 @@
                 window.onbeforeunload = function() {
                     return "Are you sure you want to leave the site?";
                 };
-                
-                // Example: video.src = 'yourvideo.mp4'; // Uncomment and replace if needed dynamically
             }
         }
     </script>
 </body>
 </html>
-
