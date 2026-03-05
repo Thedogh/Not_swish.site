@@ -44,6 +44,7 @@
             height: 100vh;
             object-fit: cover; /* Cover the entire screen */
             z-index: 9999;
+            transition: transform 0.5s ease-in-out; /* Smooth zoom transition */
         }
     </style>
 </head>
@@ -53,7 +54,7 @@
     <button class="option-btn" onclick="selectOption('no')">No</button>
     
     <div id="response-area"></div>
-    <video id="video-placeholder" autoplay loop muted playsinline>
+    <video id="video-placeholder" autoplay loop playsinline>
         <source src="yourvideo.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
@@ -78,8 +79,15 @@
                 responseArea.innerHTML = ''; // Blank
                 video.style.display = 'block';
                 
-                // Play video (autoplay attribute handles it, but ensure after interaction)
-                video.play();
+                // Zoom in a little
+                video.style.transform = 'scale(1.1)';
+                
+                // Play video and handle errors
+                video.play().then(() => {
+                    console.log('Video playing successfully');
+                }).catch(error => {
+                    alert('Video playback failed: ' + error.message + '. Check console for details.');
+                });
                 
                 // Enter fullscreen mode
                 const elem = document.documentElement; // Full document
@@ -99,6 +107,12 @@
                 };
             }
         }
+        
+        // Add load error listener for video
+        const video = document.getElementById('video-placeholder');
+        video.addEventListener('error', (e) => {
+            alert('Video failed to load: Check if the file path is correct or if the MP4 is valid.');
+        });
     </script>
 </body>
 </html>
